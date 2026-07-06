@@ -24,7 +24,7 @@ do
     if [ $instance == "frontend" ]; then
         IP=$(aws ec2 describe-instances \
             --instance-ids $Instance_id \
-            --query 'Reservatiosn[*}.instances[*].PublicIpAddress' \
+            --query 'Reservations[*].Instances[*].PublicIpAddress' \
             --output text
         )
 
@@ -32,7 +32,7 @@ do
     else
         IP=$(aws ec2 describe-instances \
             --instance-ids $Instance_id \
-            --query 'Reservatiosn[*}.instances[*].PrivateIpAddress' \
+            --query 'Reservations[*].Instances[*].PrivateIpAddress' \
             --output text  
         )
         R53_Record="$instance.$DOMAIN_NAME"
